@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"lost",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "lost",
+    "description": "api documentation for [lost (v8.0.0)](http://lostgrid.org) [![npm package](https://img.shields.io/npm/v/npmdoc-lost.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-lost) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-lost.svg)](https://travis-ci.org/npmdoc/node-npmdoc-lost)",
     "devDependencies": {
-        "lost": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "lost": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-lost",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-lost",
+    "keywords": [
+        "documentation",
+        "lost"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_lost.js",
+    "name": "npmdoc-lost",
+    "nameAlias": "npmdoc_lost",
+    "nameOriginal": "npmdoc-lost",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-lost"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
