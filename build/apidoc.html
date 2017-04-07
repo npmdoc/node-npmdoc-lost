@@ -1,0 +1,220 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="http://lostgrid.org"
+
+    >lost (v8.0.0)</a>
+</h1>
+<h4>LostGrid is a powerful grid system built in PostCSS that works with any preprocessor and even vanilla CSS.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lost">module lost</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lost.process">
+            function <span class="apidocSignatureSpan">lost.</span>process
+            <span class="apidocSignatureSpan">(root, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">lost.</span>_lg_logic</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lost._lg_logic">module lost._lg_logic</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lost._lg_logic.calcValue">
+            function <span class="apidocSignatureSpan">lost._lg_logic.</span>calcValue
+            <span class="apidocSignatureSpan">(fraction, gutter, rounder, unit)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lost._lg_logic.validateUnit">
+            function <span class="apidocSignatureSpan">lost._lg_logic.</span>validateUnit
+            <span class="apidocSignatureSpan">(value, validUnits)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lost" id="apidoc.module.lost">module lost</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lost.process" id="apidoc.element.lost.process">
+        function <span class="apidocSignatureSpan">lost.</span>process
+        <span class="apidocSignatureSpan">(root, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">process = function (root, opts) {
+  return postcss([creator(opts)]).process(root, opts);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lost._lg_logic" id="apidoc.module.lost._lg_logic">module lost._lg_logic</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lost._lg_logic.calcValue" id="apidoc.element.lost._lg_logic.calcValue">
+        function <span class="apidocSignatureSpan">lost._lg_logic.</span>calcValue
+        <span class="apidocSignatureSpan">(fraction, gutter, rounder, unit)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">calcValue = function (fraction, gutter, rounder, unit) {
+  var calcValue = &#x27;&#x27;;
+  var gutterLogic = &#x27;&#x27;;
+
+  if (!gutter) {
+    gutter = &#x27;0&#x27;;
+  }
+
+  if (gutter !== &#x27;0&#x27;) {
+    gutterLogic = ` - (${gutter} - ${gutter} * ${fraction})`;
+  }
+
+  if (!unit) {
+    unit = &#x27;%&#x27;;
+  }
+
+  calcValue = `calc(${rounder}${unit} * ${fraction}${gutterLogic})`;
+  return calcValue;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      [0, &#x27;auto&#x27;]
+    );
+  }
+}
+
+decl.cloneBefore({
+  prop: &#x27;flex-basis&#x27;,
+  value: lgLogic.<span class="apidocCodeKeywordSpan">calcValue</span>(lostColumn, lostColumnGutter, lostColumnRounder, unit)
+});
+
+if (gridDirection === &#x27;rtl&#x27;) {
+  newBlock(
+    decl,
+    &#x27;:last-child&#x27;,
+    [&#x27;margin-left&#x27;],
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lost._lg_logic.validateUnit" id="apidoc.element.lost._lg_logic.validateUnit">
+        function <span class="apidocSignatureSpan">lost._lg_logic.</span>validateUnit
+        <span class="apidocSignatureSpan">(value, validUnits)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validateUnit = function (value, validUnits) {
+  var validation = false;
+
+  if (validUnits.indexOf(value) !== -1) {
+    validation = true;
+  }
+  return validation;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    declaration.remove();
+  }
+});
+
+decl.parent.nodes.forEach(declaration =&#x3e; {
+  if (declaration.prop === &#x27;lost-unit&#x27;) {
+    if (lgLogic.<span class="apidocCodeKeywordSpan">validateUnit</span>(declaration.value, validUnits)) {
+      unit = declaration.value;
+    } else {
+      decl.warn(result, `${declaration.value} is not a valid unit for lost-column`);
+    }
+    declaration.remove();
+  }
+});
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
